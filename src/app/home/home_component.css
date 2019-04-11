@@ -4,9 +4,6 @@
     margin: auto
 }
 
-.add-new-event {
-
-}
 
 .row-wrapper div:nth-child(odd) {
     background-color: rgba(0, 0, 0, 0.09)
