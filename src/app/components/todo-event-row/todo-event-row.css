@@ -1,0 +1,7 @@
+.event {
+    padding: 6px 0;
+    display: grid;
+    grid-template-columns: auto 1fr  1fr auto auto auto auto;
+    grid-column-gap: 12px;
+    align-items: center;
+}

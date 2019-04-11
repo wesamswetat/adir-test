@@ -1,0 +1,10 @@
+<div class="event" *ngIf="event">
+    <span>{{event.id}}</span>
+    <span>{{event.name}}</span>
+    <span>{{event.date | date }}</span>
+    <button mat-stroked-button *ngIf="event.status == 'active'" (click)="deactivate()" color="warn">deactivate</button>
+    <button mat-stroked-button *ngIf="event.status == 'deactivate'" (click)="active()" color="primary">active</button>
+    <button mat-raised-button (click)="edit()" color="primary">Edit</button>
+    <button mat-raised-button (click)="duplicate()" color="accent">Duplicate</button>
+    <button mat-raised-button (click)="remove()" color="warn">Remove</button>
+</div>
