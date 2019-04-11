@@ -1,6 +1,6 @@
 import { State, Selector, Action, StateContext } from "@ngxs/store";
 import { ITodoItem } from "src/app/interface/todo";
-import { AddNewTodo, DeleteTodo, EditTodo, DuplicateTodo, DeactivateTodo, ActiveTodo } from "./actions";
+import { AddNewTodo, DeleteTodo, EditTodo, DuplicateTodo, DeactivateTodo, ActiveTodo, DragAndDropChanges } from "./actions";
 import { ITodoState } from "src/app/interface/todoState";
 
 @State<ITodoState>({
@@ -20,7 +20,7 @@ export class TodoListState {
         const state = getState();
 
         patchState({
-            list: [...state.list, item]
+            list: [item, ...state.list]
         })
     }
 
@@ -69,6 +69,15 @@ export class TodoListState {
         state.list[eventIndex].status = 'active';
         const activeEvents = state.list.filter(event => event.status === 'active');
         const deactivateEvents = state.list.filter(event => event.status === 'deactivate');
+        patchState({
+            list: [...activeEvents, ...deactivateEvents]
+        })
+    }
+
+    @Action(DragAndDropChanges)
+    DragAndDropChanges({ patchState }: StateContext<ITodoState>, {list}: DragAndDropChanges) {
+        const activeEvents = list.filter(event => event.status === 'active');
+        const deactivateEvents = list.filter(event => event.status === 'deactivate');
         patchState({
             list: [...activeEvents, ...deactivateEvents]
         })

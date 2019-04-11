@@ -18,6 +18,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TodoEeventRowComponent, DialogOverviewEditTodoDialog } from './components/todo-event-row/todo-event-row';
 import { CommonModule } from '@angular/common';
 import { MyFilterPipe } from './pipes/my-filter.pipe';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 
 
@@ -48,6 +49,7 @@ import { MyFilterPipe } from './pipes/my-filter.pipe';
     MatDialogModule,
     MatSelectModule,
     CommonModule,
+    DragDropModule
   ],
   providers: [ MatDatepickerModule  ],
   bootstrap: [AppComponent]

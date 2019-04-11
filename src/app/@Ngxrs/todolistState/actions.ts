@@ -36,3 +36,8 @@ export class ActiveTodo {
     constructor(public todoID: String) {}
 }
 
+export class DragAndDropChanges {
+    static readonly type = '[TODO] DRAGANDDROP';
+
+    constructor(public list: ITodoItem[]) {}
+}
