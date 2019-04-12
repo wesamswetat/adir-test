@@ -16,10 +16,11 @@ export class AddNewTodoComponent implements OnChanges {
     @ViewChild('formDirective') formDirective: FormGroupDirective;
     @Output() finish: EventEmitter<any> = new EventEmitter<any>();
     @Input() event: ITodoItem;
+    aoutIncrementID: number = 0;
 
     constructor(private formBuilder: FormBuilder, private store: Store) {
         this.addNewTodoForm = this.formBuilder.group({
-            id: ['', Validators.required],
+            id: [{value: this.aoutIncrementID, disabled: true}, Validators.required],
             name: ['', Validators.required],
             date: ['', Validators.required],
         })
@@ -38,15 +39,19 @@ export class AddNewTodoComponent implements OnChanges {
        if (this.addNewTodoForm.valid) {
            const newTodoEvent: ITodoItem = this.addNewTodoForm.value;
            if (!this.event) {
+            newTodoEvent.id = `${this.aoutIncrementID}`;
             newTodoEvent.status = 'active';
             this.store.dispatch(new AddNewTodo(newTodoEvent))
            } else {
+            newTodoEvent.id = this.event.id;
             newTodoEvent.status = this.event.status;
             this.store.dispatch(new EditTodo(newTodoEvent))
            }
            this.formDirective.resetForm();
            this.addNewTodoForm.reset();
            this.finish.emit();
+           this.aoutIncrementID = this.aoutIncrementID + 1;
+           this.addNewTodoForm.get('id').setValue(this.aoutIncrementID);
        }
     }
 }

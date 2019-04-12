@@ -19,6 +19,7 @@ import { TodoEeventRowComponent, DialogOverviewEditTodoDialog } from './componen
 import { CommonModule } from '@angular/common';
 import { MyFilterPipe } from './pipes/my-filter.pipe';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { SortByActiveFirst } from './pipes/sort-array-by-active-first.pipe';
 
 
 
@@ -29,7 +30,8 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     AddNewTodoComponent,
     TodoEeventRowComponent,
     DialogOverviewEditTodoDialog,
-    MyFilterPipe
+    MyFilterPipe,
+    SortByActiveFirst
   ],
   entryComponents: [DialogOverviewEditTodoDialog],
   imports: [

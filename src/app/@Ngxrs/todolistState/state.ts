@@ -35,6 +35,7 @@ export class TodoListState {
     @Action(EditTodo)
     EditTodo({ getState, patchState }: StateContext<ITodoState>, {item}: EditTodo) {
         const state = getState();
+        console.log(item)
         const eventEndexToEdit: number = state.list.findIndex(state => state.id === item.id);
         state.list[eventEndexToEdit] = item;
         patchState({
@@ -45,8 +46,19 @@ export class TodoListState {
     @Action(DuplicateTodo)
     DuplicateTodo({ getState, patchState }: StateContext<ITodoState>, {item}:DuplicateTodo) {
         const state = getState();
+        if (item.duplicateaTimes) {
+            item.duplicateaTimes = item.duplicateaTimes + 1;
+        } else {
+            item.duplicateaTimes = 1;
+        }
+        const newItem: ITodoItem = {
+            date: item.date,
+            name: item.name,
+            id: `${item.id}-D${item.duplicateaTimes}`,
+            status: item.status
+        }
         patchState({
-            list: [...state.list, item]
+            list: [...state.list, newItem]
         })
     }
 
@@ -55,10 +67,8 @@ export class TodoListState {
         const state = getState();
         const eventIndex: number = state.list.findIndex(event => event.id === todoID);
         state.list[eventIndex].status = 'deactivate';
-        const activeEvents = state.list.filter(event => event.status === 'active');
-        const deactivateEvents = state.list.filter(event => event.status === 'deactivate');
         patchState({
-            list: [...activeEvents, ...deactivateEvents]
+            list: [...state.list]
         })
     }
 
@@ -67,19 +77,15 @@ export class TodoListState {
         const state = getState();
         const eventIndex: number = state.list.findIndex(event => event.id === todoID);
         state.list[eventIndex].status = 'active';
-        const activeEvents = state.list.filter(event => event.status === 'active');
-        const deactivateEvents = state.list.filter(event => event.status === 'deactivate');
         patchState({
-            list: [...activeEvents, ...deactivateEvents]
+            list: [...state.list]
         })
     }
 
     @Action(DragAndDropChanges)
     DragAndDropChanges({ patchState }: StateContext<ITodoState>, {list}: DragAndDropChanges) {
-        const activeEvents = list.filter(event => event.status === 'active');
-        const deactivateEvents = list.filter(event => event.status === 'deactivate');
         patchState({
-            list: [...activeEvents, ...deactivateEvents]
+            list: [...list]
         })
     }
 

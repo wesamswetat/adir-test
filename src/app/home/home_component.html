@@ -24,7 +24,7 @@
             </mat-form-field>
     </div>
     <div cdkDropList class="row-wrapper" *ngIf="todoList$ | async as list" (cdkDropListDropped)="drop($event, list.list)">
-        <div *ngFor="let event of list.list | myFilter: [filterBy, filterByNameOrId] ;trackBy: trackByFn" cdkDrag [cdkDragDisabled]="event.status == 'deactivate'" [ngClass]="{'default-cursor': event.status == 'deactivate'}">
+        <div *ngFor="let event of list.list | myFilter: [filterBy, filterByNameOrId] | sortByActiveFirst ;trackBy: trackByFn" cdkDrag [cdkDragDisabled]="event.status == 'deactivate'" [ngClass]="{'default-cursor': event.status == 'deactivate'}">
             <todo-event-row-component [event]="event"></todo-event-row-component>
         </div>
         <h3 *ngIf="list.list.length === 0">Your list is empty, you can add events</h3>

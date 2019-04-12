@@ -3,6 +3,7 @@
         <mat-form-field appearance="outline">
             <mat-label>id</mat-label>
             <input matInput formControlName="id">
+            <mat-hint>this field set automatically</mat-hint>
             <mat-error *ngIf="addNewTodoForm.controls['id']?.errors?.required">this field is required</mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">

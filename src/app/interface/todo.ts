@@ -3,4 +3,5 @@ export interface ITodoItem {
     name: string;
     status: "active" | "deactivate";
     date: Date;
+    duplicateaTimes?: number;
 }
