@@ -2,31 +2,18 @@
     <div class="add-new-event">
         <add-new-todo-component></add-new-todo-component>
     </div>
-    <div>
-        <samp>Filter by: </samp>
-        <mat-form-field>
-            <mat-label>Select an option</mat-label>
-            <mat-select [(value)]="filterBy" (valueChange)="filterByNameOrId = ''">
-                <mat-option>None</mat-option>
-                <mat-option value="date">date</mat-option>
-                <mat-option value="name">name</mat-option>
-                <mat-option value="id">id</mat-option>
-            </mat-select>
-        </mat-form-field>
-        <mat-form-field appearance="outline" *ngIf="filterBy == 'date'">
-            <input matInput [matDatepicker]="picker" [(ngModel)]="filterByNameOrId"  placeholder="Choose a date" >
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-        <mat-form-field appearance="outline" *ngIf="filterBy == 'name' || filterBy == 'id'">
-                <mat-label>name</mat-label>
-                <input matInput [(ngModel)]="filterByNameOrId">
-            </mat-form-field>
-    </div>
-    <div cdkDropList class="row-wrapper" *ngIf="todoList$ | async as list" (cdkDropListDropped)="drop($event, list.list)">
-        <div *ngFor="let event of list.list | myFilter: [filterBy, filterByNameOrId] | sortByActiveFirst ;trackBy: trackByFn" cdkDrag [cdkDragDisabled]="event.status == 'deactivate'" [ngClass]="{'default-cursor': event.status == 'deactivate'}">
-            <todo-event-row-component [event]="event"></todo-event-row-component>
+    <div cdkDropList class="row-wrapper viewer-wrapper " *ngIf="todoList$ | async as list"
+        (cdkDropListDropped)="drop($event, list.list)">
+        <div class="viewer-title">Events</div>
+        <div class="events-show">
+            <filter-events-by (filterValue)="filterArray = $event"></filter-events-by>
+            <mat-divider></mat-divider>
+            <div *ngFor="let event of list.list | myFilter: filterArray | sortByActiveFirst ;trackBy: trackByFn"
+                cdkDrag [cdkDragDisabled]="event.status == 'deactivate'"
+                [ngClass]="{'move-cursor': event.status == 'active'}">
+                <todo-event-row-component [event]="event"></todo-event-row-component>
+            </div>
+            <h3 *ngIf="list.list.length === 0">Your list is empty, you can add events</h3>
         </div>
-        <h3 *ngIf="list.list.length === 0">Your list is empty, you can add events</h3>
     </div>
 </div>

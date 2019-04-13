@@ -1,7 +1,29 @@
 .event {
-    padding: 6px 0;
+    padding: 12px 8px;
     display: grid;
-    grid-template-columns: auto 1fr  1fr auto auto auto auto;
+    grid-template-columns: 42px auto 1fr auto;
     grid-column-gap: 12px;
+    grid-row-gap: 8px;
     align-items: center;
+}
+
+.date {
+    grid-column-start: 2;
+    grid-column-end: 4;
+}
+
+@media only screen and (min-width: 800px) {
+    .event {
+        padding: 12px 8px;
+        display: grid;
+        grid-template-columns: auto auto  1fr auto auto;
+        grid-column-gap: 12px;
+        align-items: center;
+        justify-items: center;
+    }
+
+    .date {
+        grid-column-start: unset;
+        grid-column-end: unset;
+    }
 }

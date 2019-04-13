@@ -8,6 +8,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSelectModule} from '@angular/material/select';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 import { NgxsModule } from '@ngxs/store';
@@ -20,6 +22,7 @@ import { CommonModule } from '@angular/common';
 import { MyFilterPipe } from './pipes/my-filter.pipe';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { SortByActiveFirst } from './pipes/sort-array-by-active-first.pipe';
+import { FilterEventsByComponent } from './components/filter-events/filter-events';
 
 
 
@@ -30,6 +33,7 @@ import { SortByActiveFirst } from './pipes/sort-array-by-active-first.pipe';
     AddNewTodoComponent,
     TodoEeventRowComponent,
     DialogOverviewEditTodoDialog,
+    FilterEventsByComponent,
     MyFilterPipe,
     SortByActiveFirst
   ],
@@ -51,7 +55,9 @@ import { SortByActiveFirst } from './pipes/sort-array-by-active-first.pipe';
     MatDialogModule,
     MatSelectModule,
     CommonModule,
-    DragDropModule
+    DragDropModule,
+    MatDividerModule,
+    MatMenuModule
   ],
   providers: [ MatDatepickerModule  ],
   bootstrap: [AppComponent]

@@ -1,7 +1,8 @@
-<h1 mat-dialog-title>edit todo</h1>
 <div mat-dialog-content>
-    <add-new-todo-component (finish)="onNoClick()" [event]="data"></add-new-todo-component>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">cancel</button>
+  <div style="text-align: right">
+      <button mat-icon-button (click)="onNoClick()">
+          <mat-icon aria-label="Example icon-button with a heart icon">close</mat-icon>
+        </button>
+  </div>
+  <add-new-todo-component (finish)="onNoClick()" [event]="data"></add-new-todo-component>
 </div>

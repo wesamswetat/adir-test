@@ -4,17 +4,20 @@
     margin: auto
 }
 
+.add-new-event {
+    margin-bottom: 24px;
+}
 
 .row-wrapper div:nth-child(odd) {
     background-color: rgba(0, 0, 0, 0.09)
 }
 
-.row-wrapper div{
+.move-cursor {
     cursor: move;
 }
 
-.default-cursor {
-    cursor: unset !important;
+.events-show {
+    padding: 16px;
 }
 
 .cdk-drag-preview {

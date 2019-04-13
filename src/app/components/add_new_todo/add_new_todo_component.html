@@ -1,5 +1,7 @@
-<div class="wrapper">
-    <form novalidate [formGroup]="addNewTodoForm" #formDirective="ngForm" (ngSubmit)="onSubmit()">
+<div class="wrapper viewer-wrapper" [ngClass]="{'custom-width': event}">
+    <div class="viewer-title" *ngIf="!event">Add new event</div>
+    <div class="viewer-title" *ngIf="event">Edit event</div>
+    <form class="form" novalidate [formGroup]="addNewTodoForm" #formDirective="ngForm" (ngSubmit)="onSubmit()">
         <mat-form-field appearance="outline">
             <mat-label>id</mat-label>
             <input matInput formControlName="id">
@@ -24,9 +26,9 @@
                   <mat-option value="deactivate">deactivate</mat-option>
                 </mat-select>
               </mat-form-field>
-        <div  class="submit-button">
-            <button  *ngIf="!event" mat-button color="primary"><mat-icon>add</mat-icon>Add New Event</button>
-            <button  *ngIf="event" mat-button color="primary"><mat-icon>edit</mat-icon>Edit</button>
+        <div  class="submit-button" [ngClass]="{'edit-button': event}">
+            <button  *ngIf="!event" mat-stroked-button color="primary"><mat-icon>add</mat-icon>Add New Event</button>
+            <button  *ngIf="event" mat-stroked-button color="primary"><mat-icon>edit</mat-icon>Edit</button>
         </div>
     </form>
 </div>

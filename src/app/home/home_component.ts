@@ -14,8 +14,7 @@ import { DragAndDropChanges } from "../@Ngxrs/todolistState/actions";
 })
 export class HomeComponent {
     @Select(TodoListState.getTodoList) todoList$: Observable<ITodoItem[]>;
-    filterBy: string;
-    filterByNameOrId: string = '';
+    filterArray: string[] = [];
 
     constructor(private store: Store) {}
 
